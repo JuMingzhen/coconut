@@ -109,7 +109,7 @@ class Special_Collator:
         batch["position_ids"] = position_ids
         batch["input_ids"] = input_ids
         batch["attention_mask"] = attention_mask
-
+        batch["idx"] = torch.tensor([s["idx"] for s in features], dtype=torch.long)
         # 3. labels（causal LM）
         if "labels" in features[0] or "label" in features[0]:
             labels = [torch.tensor(s["labels"], dtype=torch.int64)
